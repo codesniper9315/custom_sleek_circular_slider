@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 double degreeToRadians(double degree) {
+  print((math.pi / 180) * degree);
   return (math.pi / 180) * degree;
 }
 
@@ -16,6 +17,8 @@ Offset degreesToCoordinates(Offset center, double degrees, double radius) {
 Offset radiansToCoordinates(Offset center, double radians, double radius) {
   var dx = center.dx + radius * math.cos(radians);
   var dy = center.dy + radius * math.sin(radians);
+  print(dx);
+  print(dy);
   return Offset(dx, dy);
 }
 
@@ -38,8 +41,7 @@ bool isPointInsideCircle(Offset point, Offset center, double rradius) {
       point.dy > (center.dy - radius);
 }
 
-bool isPointAlongCircle(
-    Offset point, Offset center, double radius, double width) {
+bool isPointAlongCircle(Offset point, Offset center, double radius, double width) {
   // distance is root(sqr(x2 - x1) + sqr(y2 - y1))
   // i.e., (7,8) and (3,2) -> 7.21
   var dx = math.pow(point.dx - center.dx, 2);
@@ -83,10 +85,7 @@ double calculateAngle(
   }
 
   double calcAngle = calculateRawAngle(
-      startAngle: startAngle,
-      angleRange: angleRange,
-      selectedAngle: selectedAngle,
-      counterClockwise: counterClockwise);
+      startAngle: startAngle, angleRange: angleRange, selectedAngle: selectedAngle, counterClockwise: counterClockwise);
 
   if (calcAngle - angleRange > (360.0 - angleRange) * 0.5) {
     return 0.0;
@@ -104,10 +103,7 @@ bool isAngleWithinRange(
     required previousAngle,
     bool counterClockwise = false}) {
   double calcAngle = calculateRawAngle(
-      startAngle: startAngle,
-      angleRange: angleRange,
-      selectedAngle: touchAngle,
-      counterClockwise: counterClockwise);
+      startAngle: startAngle, angleRange: angleRange, selectedAngle: touchAngle, counterClockwise: counterClockwise);
 
   if (calcAngle > angleRange) {
     return false;
@@ -125,8 +121,7 @@ double valueToPercentage(double value, double min, double max) {
 }
 
 double valueToAngle(double value, double min, double max, double angleRange) {
-  return percentageToAngle(
-      valueToPercentage(value - min, min, max), angleRange);
+  return percentageToAngle(valueToPercentage(value - min, min, max), angleRange);
 }
 
 double percentageToValue(double percentage, double min, double max) {

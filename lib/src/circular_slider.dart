@@ -32,7 +32,7 @@ class CustomSleekCircularSlider extends StatefulWidget {
   static const defaultAppearance = CircularSliderAppearance();
 
   double get angle {
-    return valueToAngle(endValue - startValue, min, max, appearance.angleRange);
+    return valueToAngle(endValue, min, max, appearance.angleRange);
   }
 
   double get startAngle {
@@ -48,7 +48,8 @@ class CustomSleekCircularSlider extends StatefulWidget {
   Offset get endOffset {
     double radius = math.min(width / 2, height / 2) - appearance.progressBarWidth * 0.5;
     Offset center = Offset(width / 2, height / 2);
-    Offset offset = degreesToCoordinates(center, angle + 2.7, radius);
+    print(angle);
+    Offset offset = degreesToCoordinates(center, angle, radius);
     print(offset);
     return offset;
   }
@@ -235,7 +236,7 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
             ),
             Positioned(
               top: widget.endOffset.dy,
-              right: widget.endOffset.dx,
+              left: widget.endOffset.dx,
               child: widget.endWidget ?? SizedBox.shrink(),
             ),
           ],
