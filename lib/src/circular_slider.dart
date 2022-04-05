@@ -225,11 +225,7 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
         height: size.height,
         child: Stack(
           children: [
-            SizedBox(
-              width: size.width,
-              height: size.height,
-              child: Center(child: _buildChildWidget()),
-            ),
+            _buildChildWidget(),
             Positioned(
               top: widget.startOffset.dy,
               left: widget.startOffset.dx,
@@ -246,10 +242,7 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
     );
   }
 
-  Widget? _buildChildWidget() {
-    if (widget.appearance.spinnerMode) {
-      return null;
-    }
+  Widget _buildChildWidget() {
     final value = angleToValue(_currentAngle!, widget.min, widget.max, _angleRange);
     final childWidget = widget.innerWidget != null
         ? widget.innerWidget!(value)
