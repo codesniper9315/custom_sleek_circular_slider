@@ -27,8 +27,6 @@ class CustomSleekCircularSlider extends StatefulWidget {
   final OnChange? onChangeStart;
   final OnChange? onChangeEnd;
   final InnerWidget? innerWidget;
-  final Widget? startWidget;
-  final Widget? endWidget;
   static const defaultAppearance = CircularSliderAppearance();
 
   double get angle {
@@ -64,8 +62,6 @@ class CustomSleekCircularSlider extends StatefulWidget {
     this.onChangeStart,
     this.onChangeEnd,
     this.innerWidget,
-    this.startWidget,
-    this.endWidget,
   })  : assert(min <= max),
         assert(startValue <= endValue),
         assert(startValue >= min && startValue <= max),
@@ -223,25 +219,7 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
       child: Container(
         width: size.width,
         height: size.height,
-        child: Stack(
-          children: [
-            SizedBox(
-              width: size.width,
-              height: size.height,
-              child: Center(child: _buildChildWidget()),
-            ),
-            Positioned(
-              top: widget.startOffset.dy,
-              left: widget.startOffset.dx,
-              child: widget.startWidget ?? SizedBox.shrink(),
-            ),
-            Positioned(
-              top: widget.endOffset.dy,
-              left: widget.endOffset.dx,
-              child: widget.endWidget ?? SizedBox.shrink(),
-            ),
-          ],
-        ),
+        child: _buildChildWidget(),
       ),
     );
   }
