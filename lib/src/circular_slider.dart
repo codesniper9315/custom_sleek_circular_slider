@@ -42,13 +42,13 @@ class CustomSleekCircularSlider extends StatefulWidget {
   Offset get startOffset {
     double radius = math.min(width / 2, height / 2) - appearance.progressBarWidth * 0.5;
     Offset center = Offset(width / 2, height / 2);
-    return degreesToCoordinates(center, -math.pi / 2 + startAngle + 1.5, radius);
+    return degreesToCoordinates(center, -math.pi / 2 + startAngle, radius);
   }
 
   Offset get endOffset {
     double radius = math.min(width / 2, height / 2) - appearance.progressBarWidth * 0.5;
     Offset center = Offset(width / 2, height / 2);
-    return degreesToCoordinates(center, -math.pi / 2 + angle + 1.5, radius);
+    return degreesToCoordinates(center, -math.pi / 2 + angle, radius);
   }
 
   const CustomSleekCircularSlider({
