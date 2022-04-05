@@ -235,7 +235,7 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
             ),
             Positioned(
               top: widget.endOffset.dy,
-              left: widget.endOffset.dx,
+              right: widget.endOffset.dx,
               child: widget.endWidget ?? SizedBox.shrink(),
             ),
           ],
