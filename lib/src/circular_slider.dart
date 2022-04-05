@@ -98,7 +98,7 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
   @override
   void initState() {
     super.initState();
-    _startAngle = widget.appearance.startAngle;
+    _startAngle = widget.startAngle;
     _angleRange = widget.appearance.angleRange;
     _appearanceHashCode = widget.appearance.hashCode;
 
