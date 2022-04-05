@@ -49,7 +49,6 @@ class CustomSleekCircularSlider extends StatefulWidget {
     double radius = math.min(width / 2, height / 2) - appearance.progressBarWidth * 0.5;
     Offset center = Offset(width / 2, height / 2);
     Offset offset = degreesToCoordinates(center, angle - (appearance.angleRange - appearance.startAngle), radius);
-    print(offset);
     return offset;
   }
 
@@ -229,13 +228,13 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
           children: [
             _buildChildWidget(),
             Positioned(
-              top: widget.startOffset.dy,
-              left: widget.startOffset.dx,
+              top: widget.startOffset.dy - widget.appearance.progressBarWidth * 0.5,
+              left: widget.startOffset.dx - widget.appearance.progressBarWidth * 0.5,
               child: widget.startWidget ?? SizedBox.shrink(),
             ),
             Positioned(
-              top: widget.endOffset.dy,
-              left: widget.endOffset.dx,
+              top: widget.endOffset.dy - widget.appearance.progressBarWidth * 0.5,
+              left: widget.endOffset.dx - widget.appearance.progressBarWidth * 0.5,
               child: widget.endWidget ?? SizedBox.shrink(),
             ),
           ],
