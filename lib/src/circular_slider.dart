@@ -225,12 +225,10 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
         height: size.height,
         child: Stack(
           children: [
-            Center(
-              child: SizedBox(
-                width: size.width,
-                height: size.height,
-                child: _buildChildWidget(),
-              ),
+            SizedBox(
+              width: size.width,
+              height: size.height,
+              child: Center(child: _buildChildWidget()),
             ),
             Positioned(
               top: widget.startOffset.dy,
