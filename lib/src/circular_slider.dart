@@ -81,7 +81,8 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
   bool _animationInProgress = false;
   _CurvePainter? _painter;
   double? _oldWidgetAngle;
-  double? _oldWidgetValue;
+  double? _oldWidgetStartValue;
+  double? _oldWidgetEndValue;
   double? _currentAngle;
   late double _startAngle;
   late double _angleRange;
@@ -135,7 +136,7 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
         initialValue: widget.endValue - widget.startValue,
         angle: widget.angle,
         oldAngle: _oldWidgetAngle,
-        oldValue: _oldWidgetValue,
+        oldValue: _oldWidgetEndValue,
         valueChangedAnimation: ((double anim, bool animationCompleted) {
           _animationInProgress = !animationCompleted;
           setState(() {
@@ -190,14 +191,17 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
         selectedAngle: _selectedAngle,
         defaultAngle: defaultAngle,
         counterClockwise: counterClockwise);
+    print(_currentAngle);
 
     _painter = _CurvePainter(
-        startAngle: _startAngle,
-        angleRange: _angleRange,
-        angle: _currentAngle! < 0.5 ? 0.5 : _currentAngle!,
-        appearance: widget.appearance);
+      startAngle: _startAngle,
+      angleRange: _angleRange,
+      angle: _currentAngle! < 0.5 ? 0.5 : _currentAngle!,
+      appearance: widget.appearance,
+    );
     _oldWidgetAngle = widget.angle;
-    // _oldWidgetValue = widget.initialValue;
+    _oldWidgetStartValue = widget.startValue;
+    _oldWidgetEndValue = widget.endValue;
   }
 
   void _updateOnChange() {
@@ -210,9 +214,10 @@ class _CustomSleekCircularSliderState extends State<CustomSleekCircularSlider> w
   Widget _buildRotatingPainter({double? rotation, required Size size}) {
     if (rotation != null) {
       return Transform(
-          transform: Matrix4.identity()..rotateZ((rotation) * 5 * math.pi / 6),
-          alignment: FractionalOffset.center,
-          child: _buildPainter(size: size));
+        transform: Matrix4.identity()..rotateZ((rotation) * 5 * math.pi / 6),
+        alignment: FractionalOffset.center,
+        child: _buildPainter(size: size),
+      );
     } else {
       return _buildPainter(size: size);
     }
