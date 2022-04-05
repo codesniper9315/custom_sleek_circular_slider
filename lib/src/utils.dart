@@ -2,7 +2,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 double degreeToRadians(double degree) {
-  print((math.pi / 180) * degree);
   return (math.pi / 180) * degree;
 }
 
@@ -17,8 +16,6 @@ Offset degreesToCoordinates(Offset center, double degrees, double radius) {
 Offset radiansToCoordinates(Offset center, double radians, double radius) {
   var dx = center.dx + radius * math.cos(radians);
   var dy = center.dy + radius * math.sin(radians);
-  print(dx);
-  print(dy);
   return Offset(dx, dy);
 }
 
@@ -39,6 +36,10 @@ bool isPointInsideCircle(Offset point, Offset center, double rradius) {
       point.dx > (center.dx - radius) &&
       point.dy < (center.dy + radius) &&
       point.dy > (center.dy - radius);
+}
+
+bool isPointAlongPin(Offset point, Offset pin, double radius) {
+  return (point.dx - pin.dx).abs() <= radius || (point.dy - pin.dy).abs() <= radius;
 }
 
 bool isPointAlongCircle(Offset point, Offset center, double radius, double width) {
